@@ -1,0 +1,31 @@
+<div *ngIf="!!product" class="product secondary-bg-700 br-1 overflow-h d-f fd-c us-n p-r" [ngClass]="{ 'dlc': product.dlc }">
+  <div class="p-r" [ngClass]="{ 'basket-overlay': product.onBasket }">
+    <img [ngSrc]="product.imgSrc" [alt]="product.title" width="240" height="135">
+    <div class="p-a p-4 primary-bg-700 fs-10 br-4 uppercase basket-label" *ngIf="product.onBasket">In the basket</div>
+  </div>
+  <div class="d-f fd-c jc-sa h-100 fg-8 p-8">    
+    <div class="d-f jc-c fs-16 ai-c">
+      <div *ngIf="product.discount" class="p-4 d-f ai-c fs-24 h-100 discount"> {{product.discount + '%'}} </div>
+      <div class="d-f jc-c ai-c secondary-bg-800 p-4">
+        <div [ngClass]="{ 'td-line fs-12': product.discount }" class="td-line fs-12 secondary-100 h-100 ta-c d-f jc-c ai-c"> {{product.price | balance}} </div>
+        <div *ngIf="product.discountPrice" class="p-4 discount-price"> {{product.discountPrice | balance}} </div>
+      </div>
+    </div>
+
+    <mat-divider class="secondary-bg-400 w-100"></mat-divider>
+
+    <div class="d-f fg-8 fw-w">
+      <div *ngFor="let tag of product.tags" class="fs-10 pl-8 pr-8 pt-4 pb-4 br-4 primary-bg-600">{{ tag }}</div>
+    </div>
+  </div>
+  <div class="p-a d-f r-g-16 fd-c jc-c ai-c p-24 h-100 w-100 z-index-1 overlay primary-900">
+    <button *ngIf="!product.onBasket" (click)="addToCart(product)" class="w-100" mat-flat-button color="primary">
+      <mat-icon>add</mat-icon>
+      Add to Basket
+    </button>
+    <button *ngIf="product.onBasket" (click)="removeFromCart(product)" class="w-100" mat-flat-button color="primary">
+      <mat-icon>delete</mat-icon>
+      Remove from Basket
+    </button>
+  </div>
+</div>

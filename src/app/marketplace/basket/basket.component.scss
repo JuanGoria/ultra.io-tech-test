@@ -1,0 +1,5 @@
+@import '/src/app/core/styles/theming/colors';
+
+.insufficient-balance {
+  color: map-get($warn, 300);
+}

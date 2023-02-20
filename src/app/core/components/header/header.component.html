@@ -1,0 +1,17 @@
+<div class="secondary-50 w-100">
+  <div class="d-f jc-sb ai-c pl-32 pr-32 pt-16 pb-16 maxw-xl m-auto">
+    <div class="d-f c-g-8 c-pointer us-n" [routerLink]="['/']">
+      <img height="32" width="32" src="https://liquidity.ultra.io/twitter-card-icon.png">
+      <div class="fs-32 fw-bold d-n title">Marketplace</div>
+    </div>
+    <div class="d-f ai-c c-g-24">
+      <div class="d-f c-g-4 us-n">
+        <span>Balance:&nbsp;</span>
+        <div *ngIf="(balance$ | async) as Balance"><span class="primary-400">{{ Balance.amount | currency }}</span>&nbsp;{{Balance.currency}}</div>
+      </div>
+      <button [routerLink]="['/basket']" mat-mini-fab color="accent" matTooltip="Basket" matBadgeSize="medium" [matBadge]="(products$ | async)?.length || ''" matBadgeColor="primary">
+        <mat-icon>shopping_basket</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div *ngIf="product" class="d-f jc-sb w-100 r-g-16 secondary-bg-900 maxw-m p-4 us-n">
+  <img [ngSrc]="product.imgSrc" [alt]="product.title" width="128" height="72" class="preview-img">
+  <div class="d-f jc-sb pt-8 w-100">
+    <div class="plr-4 ml-16 fw-light fs-12">{{product.title}}</div>
+    <div class="h-100 d-f fd-c ai-fe r-g-4 mr-16">
+      <div [ngClass]="{ 'td-line fs-12 secondary-400': product.discount }" class="secondary-200"> {{ product.price | balance}} </div>
+      <div *ngIf="product.discountPrice" class="secondary-200 fs-14"> {{ product.discountPrice | balance }}</div>
+      <span class="mt-8 fs-8 underline c-pointer" (click)="delete(product)"> Delete </span>
+    </div>
+  </div>
+</div>

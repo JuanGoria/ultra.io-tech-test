@@ -1,0 +1,292 @@
+@import './theming/colors';
+@import './variables';
+
+@mixin Common() {
+ 
+  /*#region Dynamic classes*/
+  /* Creates font-size, padding & margin classes from 4px to 96px */
+
+  @for $i from 0 through 100 {
+
+    .fs-#{$i} {
+      font-size: #{$i}px;
+    }
+
+    .m-#{$i} {
+      margin: #{$i}px;
+    }
+
+    .mtb-#{$i} {
+      margin: #{$i}px 0;
+    }
+
+    .mlr-#{$i} {
+      margin: 0 #{$i}px;
+    }
+
+    .mt-#{$i} {
+      margin-top: #{$i}px;
+    }
+
+    .mb-#{$i} {
+      margin-bottom: #{$i}px;
+    }
+
+    .ml-#{$i} {
+      margin-left: #{$i}px;
+    }
+
+    .mr-#{$i} {
+      margin-right: #{$i}px;
+    }
+
+    .p-#{$i} {
+      padding: #{$i}px;
+    }
+
+    .ptb-#{$i} {
+      padding: #{$i}px 0;
+    }
+
+    .plr-#{$i} {
+      padding: 0 #{$i}px;
+    }
+
+    .pt-#{$i} {
+      padding-top: #{$i}px;
+    }
+
+    .pb-#{$i} {
+      padding-bottom: #{$i}px;
+    }
+
+    .pl-#{$i} {
+      padding-left: #{$i}px;
+    }
+
+    .pr-#{$i} {
+      padding-right: #{$i}px;
+    }
+  }
+
+  /* Creates border-radius classes for border-radius. Integers and percentage as the unit */
+  @for $i from 0 through 50 {
+    .br-#{$i} {
+      border-radius: #{$i * 1%};
+    }
+  }
+
+  @for $i from 1 through 10 {
+    .z-index-#{$i} {
+      z-index: #{$i};
+    } 
+  }
+
+  /* Creates colors */
+  @each $key, $value in $primary {
+    @if $key != 'contrast' {
+      .primary-#{$key} {
+        color: #{$value};
+      }
+      .primary-bg-#{$key} {
+        background-color: #{$value};
+      }
+    }
+  }
+
+  @each $key, $value in $secondary {
+    @if $key != 'contrast' {
+      .secondary-#{$key} {
+        color: #{$value};
+      }
+      .secondary-bg-#{$key} {
+        background-color: #{$value};
+      }
+    }
+  }
+
+  /* Max with breakpoint values */
+  @each $key, $value in $breakpoints {
+    .maxw-#{$key} {
+      max-width: $value;
+    }
+  }
+
+  /* Flexbox gap */
+
+  @for $i from 1 through 20 {
+    $value: $i * 4;
+    
+    .fg-#{$value} {
+      gap: #{$value}px;
+    }
+
+    .r-g-#{$value} {
+      row-gap: #{$value}px;
+    }
+
+    .c-g-#{$value} {
+      column-gap: #{$value}px;
+    }
+  }
+
+  /*#endregion Dynamic classes*/
+
+  .d-f {
+    display: flex;
+  }
+
+  .fd-c {
+    flex-direction: column;
+  }
+
+  .fd-r {
+    flex-direction: row;
+  }
+
+  .fw-w {
+    flex-wrap: wrap;
+  }
+
+  .jc-c {
+    justify-content: center;
+  }
+
+  .jc-fs {
+    justify-content: flex-start;
+  }
+
+  .jc-fe {
+    justify-content: flex-end;
+  }
+
+  .jc-sa {
+    justify-content: space-around;    
+  }
+
+  .jc-sb {
+    justify-content: space-between;
+  }
+
+  .jc-se {
+    justify-content: space-evenly;
+  }
+
+  .ai-c {
+    align-items: center;
+  }
+
+  .ai-fe {
+    align-items: flex-end;
+  }
+
+  .ai-fs {
+    align-items: flex-start;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  .w-100 {
+    width: 100%;
+  }
+
+  .h-100 {
+    height: 100%;
+  }
+
+  .m-auto {
+    margin: 0 auto;
+  }
+
+  .d-b {
+    display: block;
+  }
+
+  .d-ib {
+    display: inline-block;
+  }
+  
+  .d-n {
+    display: none;
+  }
+
+  .ta-c {
+    text-align: center;
+  }
+
+  .td-n {
+    text-decoration: none;
+  }
+
+  .td-line {
+    text-decoration: line-through;
+  }
+
+  .to-e {
+    text-overflow: ellipsis;
+  }
+
+  .ws-nw {
+    white-space: nowrap;
+  }
+
+  .overflow-h {
+    overflow: hidden;
+  }
+
+  .fw-light {
+    font-weight: 100;
+  }
+
+  .fw-regular {
+    font-weight: 400;
+  }
+
+  .fw-bold {
+    font-weight: 700;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .lowercase {
+    text-transform: lowercase;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+  }
+
+  .pev-n {
+    pointer-events: none;
+  }
+
+  .us-n {
+    user-select: none;
+  }
+
+  .c-pointer {
+    cursor: pointer;
+  }
+
+  .p-r {
+    position: relative;
+  }
+
+  .p-a {
+    position: absolute;
+  }
+
+  .p-s {
+    position: sticky;
+  }
+
+  .p-f {
+    position: fixed;
+  }
+}
+
+@include Common();

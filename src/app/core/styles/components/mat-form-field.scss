@@ -1,0 +1,8 @@
+@mixin Mat-Form-Field() {
+
+  mat-form-field {
+    .mat-mdc-form-field-infix {
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<form *ngIf="!(successfulBuy$ | async)" [formGroup]="form" class="secondary-bg-700 m-auto maxw-l d-f fd-c p-24">
+  <h1 class="fs-44 mb-32">Checkout</h1>
+  <div class="d-f fd-c w-100 c-g-16 r-g-16">
+    <mat-label>Name *</mat-label>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>First</mat-label>
+      <input matInput formControlName="firstName" type="text">
+      <mat-error *ngIf="form.get('firstName')?.hasError('required')">First Name is required</mat-error>
+      <mat-error *ngIf="form.get('firstName')?.hasError('pattern')">First Name format is invalid</mat-error>
+      <mat-error *ngIf="form.get('firstName')?.hasError('maxlength')">Max Length reached {{ nameMaxLength }} </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Last</mat-label>
+      <input matInput formControlName="lastName" type="text">
+      <mat-error *ngIf="form.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+      <mat-error *ngIf="form.get('lastName')?.hasError('pattern')">Last Name format is invalid</mat-error>
+      <mat-error *ngIf="form.get('lastName')?.hasError('maxlength')">Max Length reached {{ nameMaxLength }} </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="d-f fd-c c-g-16 r-g-16 mt-16">
+    <mat-label>Address *</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>Street</mat-label>
+      <input matInput formControlName="street" type="text">
+      <mat-error *ngIf="form.get('street')?.hasError('required')">Street is required</mat-error>
+      <mat-error *ngIf="form.get('street')?.hasError('pattern')">Street format is invalid</mat-error>
+      <mat-error *ngIf="form.get('street')?.hasError('maxlength')">Max Length reached {{ commonMaxLength }} </mat-error>
+    </mat-form-field>
+    <div class="d-f c-g-16">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" type="text">
+        <mat-error *ngIf="form.get('city')?.hasError('required')">City is required</mat-error>
+        <mat-error *ngIf="form.get('city')?.hasError('pattern')">City format is invalid</mat-error>
+        <mat-error *ngIf="form.get('city')?.hasError('maxlength')">Max Length reached {{ commonMaxLength }} </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>State</mat-label>
+        <input matInput formControlName="state" type="text">
+        <mat-error *ngIf="form.get('state')?.hasError('required')">State is required</mat-error>
+        <mat-error *ngIf="form.get('state')?.hasError('pattern')">State format is invalid</mat-error>
+        <mat-error *ngIf="form.get('state')?.hasError('maxlength')">Max Length reached {{ commonMaxLength }} </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  
+  <div class="d-f fd-c r-g-16 w-100 mt-16">
+    <mat-label>Contact *</mat-label>
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="text">
+      <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email')">Email format is invalid</mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('maxlength')">Max Length reached {{ commonMaxLength }} </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="w-100 d-f jc-c">
+    <button (click)="pay()" class="w-100 maxw-xs" [disabled]="form.invalid || (loading$ | async)" mat-flat-button color="primary" type="button">Pay!</button>
+  </div>
+</form>
+
+<div *ngIf="successfulBuy$ | async" class="secondary-bg-700 m-auto maxw-l d-f jc-c ai-c fd-c p-24 r-g-24">
+  <h1 class="fs-44 mb-32">Thank you for your purchase</h1>
+  <button [routerLink]="['/']" mat-flat-button color="primary">Buy More</button>
+</div>

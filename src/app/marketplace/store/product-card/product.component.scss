@@ -1,0 +1,64 @@
+@import '/src/app/core/styles/theming/colors';
+
+.product {
+  width: 240px;
+  height: 300px;
+  box-shadow: none;
+  transition: box-shadow 300ms ease-in-out;
+  &.dlc {
+    position: relative;
+    overflow: hidden;
+    &::after {
+      content: "DLC";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+      font-family: 'Roboto';
+      position: absolute;
+      top: 10px;
+      left: -30px;
+      width: 100px;
+      height: 20px;
+      background-color: map-get($warn, 400);
+      opacity: 0.9;
+      transform: rotate(315deg);
+    }
+
+  }
+
+  .overlay {
+    transform: translateY(-100%);
+    background: transparentize(map-get($secondary, 700), 1);
+    transition: background-color 300ms ease-in-out, transform 300ms ease-in-out
+  }
+
+  &:hover {
+    box-shadow: transparentize(map-get($primary, 700), 0.02) 0px 1px 0px, transparentize(map-get($primary, 700), 0.01) 0px 0px 8px;
+
+    
+    .overlay {
+      transform: translateY(0);
+      background: transparentize(map-get($secondary, 700), 0.05);
+    }
+  }
+
+  .discount {
+    color: lime;
+    background-color: #003800;
+  }
+
+  .discount-price {
+    color: limegreen;
+  }
+
+  .basket-overlay img {
+    opacity: 0.05;
+  }
+
+  .basket-label {
+    left: 5px;
+    bottom: 5px;
+  }
+}

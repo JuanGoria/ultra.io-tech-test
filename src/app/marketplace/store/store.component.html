@@ -1,0 +1,7 @@
+<div class="mt-96">
+  <div class="d-f jc-c ai-c maxw-xl m-auto p-16 fw-w fg-16 w-100">
+    <div *ngFor="let product of products$ | async; trackBy: trackByFn">
+      <ultra-product-card [product]="product" (onBasketUpdate)="getProducts()"></ultra-product-card>
+    </div>
+  </div>  
+</div>
