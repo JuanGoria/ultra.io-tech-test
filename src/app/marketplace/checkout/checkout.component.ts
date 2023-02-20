@@ -12,7 +12,6 @@ import { BasketActions } from '../basket/basket.actions';
 @Component({
   selector: 'ultra-name',
   templateUrl: 'checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
