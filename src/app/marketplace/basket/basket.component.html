@@ -1,34 +1,31 @@
-<div class="w-100 h-100 secondary-bg-700 m-auto maxw-l d-f fd-c p-16">
+<div class="w-100 h-100 secondary-bg-700 m-auto maxw-l d-f fd-c p-16" *ngIf="(total$ | async) > 0">
   <h1 class="fs-44 mb-32">Your Basket</h1>
   <div class="d-f fd-c r-g-4 mb-36">
     <ultra-product-preview class="d-f jc-c" *ngFor="let product of products$ | async" [product]="product" (onDelete)="deleteProduct($event)"></ultra-product-preview>
   </div>
 
   <div class="d-f fd-c w-100 m-auto p-16 secondary-bg-900 maxw-m r-g-16">
-    <ng-container *ngIf="(total$ | async) > 0">
-      <div class="d-f jc-sb">
-        <div>Total:</div>
-        <div class="primary-400"> {{ (total$ | async) | currency }} </div>
-      </div>
-      <div class="d-f jc-sb">
-        <div>Your Balance:</div>
-        <div>{{ (balance$ | async).amount | currency }}</div>
-      </div>
-      <div class="d-f jc-sb">
-        <div>Your Balance after this operation:</div>
-        <div> {{ ((balance$ | async).amount - (total$ | async)) | currency }} </div>
-      </div>
-      <span *ngIf="(((balance$ | async).amount - (total$ | async)) < 0 )" class="d-f jc-fe insufficient-balance">
-        Insufficient Balance
-      </span>
-      <div class="d-f jc-sb mt-36">
-        <button [routerLink]="['/']" mat-stroked-button color="primary">Keep looking</button>
-        <button (click)="goToCheckout()" mat-flat-button color="primary" [disabled]="(((balance$ | async).amount - (total$ | async)) < 0 )">Checkout</button>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="(total$ | async) === 0">
-      <div class="fs-24">Your basket is empty! Check out the <a [routerLink]="['/']" class="primary-500 fs-24">store</a>!</div>
-    </ng-container>
+    <div class="d-f jc-sb">
+      <div>Total:</div>
+      <div class="primary-400"> {{ (total$ | async) | currency }} </div>
+    </div>
+    <div class="d-f jc-sb">
+      <div>Your Balance:</div>
+      <div>{{ (balance$ | async).amount | currency }}</div>
+    </div>
+    <div class="d-f jc-sb">
+      <div>Your Balance after this operation:</div>
+      <div> {{ ((balance$ | async).amount - (total$ | async)) | currency }} </div>
+    </div>
+    <span *ngIf="(((balance$ | async).amount - (total$ | async)) < 0 )" class="d-f jc-fe insufficient-balance">
+      Insufficient Balance
+    </span>
+    <div class="d-f jc-sb mt-36">
+      <button [routerLink]="['/']" mat-stroked-button color="primary">Keep looking</button>
+      <button (click)="goToCheckout()" mat-flat-button color="primary" [disabled]="(((balance$ | async).amount - (total$ | async)) < 0 )">Checkout</button>
+    </div>
   </div>
 
 </div>
+
+<div *ngIf="(total$ | async) === 0" class="fs-32 ta-c d-f jc-c ai-c m-auto h-100 w-100">Your basket is empty! Check out the <a [routerLink]="['/']" class="primary-500 fs-32">&nbsp;store</a>!</div>

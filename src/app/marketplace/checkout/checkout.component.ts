@@ -31,20 +31,17 @@ export class CheckoutComponent {
   readonly successfulBuy$ = new BehaviorSubject(false);
 
   form: FormGroup = new FormGroup({
-    firstName: new FormControl('Juan', [Validators.required, Validators.maxLength(this.nameMaxLength), Validators.pattern(this.letters)]),
+    firstName: new FormControl('Juan Ignacio', [Validators.required, Validators.maxLength(this.nameMaxLength), Validators.pattern(this.letters)]),
     lastName: new FormControl('Goria', [Validators.required, Validators.maxLength(this.nameMaxLength), Validators.pattern(this.letters)]),
-    street: new FormControl('ZZZXXX', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.lettersAndNumbers)]),
-    city: new FormControl('TTTTYYYY', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.letters)]),
-    state: new FormControl('AAASSS', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.letters)]),
-    email: new FormControl('asd@gmail.com', [Validators.required, Validators.email, Validators.maxLength(this.commonMaxLength)])
+    street: new FormControl('Francisco Madero 589 DTO 2', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.lettersAndNumbers)]),
+    city: new FormControl('Villa Sarmiento', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.letters)]),
+    state: new FormControl('Buenos Aires', [Validators.required, Validators.maxLength(this.commonMaxLength), Validators.pattern(this.letters)]),
+    email: new FormControl('juaangoria@gmail.com', [Validators.required, Validators.email, Validators.maxLength(this.commonMaxLength)])
   });
 
   constructor(private $service: StoreService, private $store: Store) {}
 
   pay(): void {
-
-    this.loading$.subscribe(console.log);
-
     combineLatest([this.products$, this.total$, this.balance$])
     .pipe(
       take(1),

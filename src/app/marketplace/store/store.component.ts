@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { Product } from './store.service.api';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take } from 'rxjs';
 import { StoreService } from './store.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { StoreService } from './store.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StoreComponent implements OnInit, OnDestroy {
+export class StoreComponent implements OnInit {
 
   constructor(private $service: StoreService) { }
 
@@ -18,9 +18,8 @@ export class StoreComponent implements OnInit, OnDestroy {
   readonly unsubscribe$ = new Subject();
 
   getProducts(): void {
-    console.log('hola?');
     this.$service.getProducts()
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(take(1))
       .subscribe({
         next: (collection) => this.products$.next(collection)
       });
@@ -28,11 +27,6 @@ export class StoreComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProducts();
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(null);
-    this.unsubscribe$.complete();
   }
 
   trackByFn(_, item: Product) { 
